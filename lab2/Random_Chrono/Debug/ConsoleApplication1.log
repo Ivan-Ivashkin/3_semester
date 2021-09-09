@@ -1,0 +1,7 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\Иван\Desktop\3_semester\3_semester\lab2\ConsoleApplication1\ConsoleApplication1.cpp(33,83): warning C4244: return: преобразование "_Rep" в "size_t", возможна потеря данных
+          with
+          [
+              _Rep=__int64
+          ]
+  ConsoleApplication1.vcxproj -> C:\Users\Иван\Desktop\3_semester\3_semester\lab2\ConsoleApplication1\Debug\ConsoleApplication1.exe
