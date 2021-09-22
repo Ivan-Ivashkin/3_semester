@@ -187,11 +187,39 @@ public:
     }
 };
 
-int main(int argc, const char* argv[]) {
-    DiscreteState d(1);
-    ProbabilityTest pt(10, 0, 100, 100000);
+void test1() {
+    SegmentState s(0, 50);
 
-    std::cout << pt(d) << std::endl;
+    for (int n = 1; n <= 1000; n++) {
+        ProbabilityTest pt(2021, 0, 100, n);
+        std::cout << pt(s) << std::endl;
+    }
+}
+
+void test2() {
+    SegmentState s1(0, 10);
+    SegmentState s2(10, 30);
+
+    State* ss1 = Factory::create_UnionState(&s1, &s2);
+
+    for (int n = 1; n <= 1000; n++) {
+        ProbabilityTest pt(2021, 0, 60, n);
+        std::cout << pt(*ss1) << std::endl;
+    }
+}
+
+void test3() {
+    SetState s1({ 7, 27, 3, 14, 22, 25, 1, 8, 9, 20, 30, 12, 2, 4, 15, 16, 29, 18, 19, 10, 21, 5, 23, 24, 6, 26, 13, 28, 17, 11 });
+    for (int n = 1; n <= 1000; n++) {
+        ProbabilityTest pt(2021, 0, 60, n);
+        std::cout << pt(s1) << std::endl;
+    }
+}
+
+int main(int argc, const char* argv[]) {
+    test1();
+    //test2();
+    //test3();
 
     return 0;
 }
