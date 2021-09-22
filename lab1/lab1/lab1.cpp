@@ -107,13 +107,15 @@ public:
     }
 };
 
-class UnionState : public State, DiscreteState, SegmentState { // объединение
+class UnionState : public State { // объединение
 private:
     State* s1;
     State* s2;
 public:
-    bool contains(int s) {
-        return s1->contains(s) && s2->contains(s);
+    UnionState(State* s1, State* s2) : s1(s1), s2(s2) { }
+
+    bool contains(int s) const {
+        return s1->contains(s) || s2->contains(s);
     }
 };
 
@@ -122,8 +124,10 @@ private:
     State* s1;
     State* s2;
 public:
-    bool contains(int s) {
-        return s1->contains(s) || s2->contains(s);
+    IntersectionState(State* s1, State* s2) : s1(s1), s2(s2) { }
+
+    bool contains(int s) const {
+        return s1->contains(s) && s2->contains(s);
     }
 };
 
@@ -171,6 +175,13 @@ public:
     static State* create_ContGapsAdds(std::vector<SegmentState> cont, std::vector<DiscreteState> adds, std::vector<DiscreteState> gaps) {
         return new ContGapsAdds(cont, adds, gaps);
     }
+    static State* create_UnionState(State *s1, State *s2) {
+        return new UnionState(s1, s2);
+    }
+    static State* create_IntersectionState(State* s1, State* s2) {
+        return new IntersectionState(s1, s2);
+    }
+
     static void release(State* ptr) {
         delete ptr;
     }
@@ -178,11 +189,9 @@ public:
 
 int main(int argc, const char* argv[]) {
     DiscreteState d(1);
-    SegmentState s(0, 10);
-    SetState ss({ 1, 3, 5, 7, 23, 48, 57, 60, 90, 99 });
     ProbabilityTest pt(10, 0, 100, 100000);
+
     std::cout << pt(d) << std::endl;
-    std::cout << pt(s) << std::endl;
-    std::cout << pt(ss) << std::endl;
+
     return 0;
 }

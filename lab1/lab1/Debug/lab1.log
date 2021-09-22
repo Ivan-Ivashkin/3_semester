@@ -1,8 +1,2 @@
 ﻿  lab1.cpp
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(110,27): warning C4584: UnionState: базовый класс "State" уже является базовым классом для "DiscreteState"
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(6): message : см. объявление "State"
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(13): message : см. объявление "DiscreteState"
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(110,27): warning C4584: UnionState: базовый класс "State" уже является базовым классом для "SegmentState"
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(6): message : см. объявление "State"
-C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\lab1.cpp(25): message : см. объявление "SegmentState"
-  lab1.vcxproj -> C:\Users\Иван\Desktop\Программирование\3_semester\lab1_\lab1\Debug\lab1.exe
+  lab1.vcxproj -> C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\Debug\lab1.exe
