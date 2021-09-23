@@ -206,6 +206,8 @@ void test2() {
         ProbabilityTest pt(2021, 0, 60, n);
         std::cout << pt(*ss1) << std::endl;
     }
+
+    Factory::release(ss1);
 }
 
 void test3() {
@@ -217,8 +219,8 @@ void test3() {
 }
 
 int main(int argc, const char* argv[]) {
-    test1();
-    //test2();
+    //test1();
+    test2();
     //test3();
 
     return 0;
