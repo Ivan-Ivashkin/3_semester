@@ -1,2 +1,10 @@
 ﻿  lab1.cpp
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(342,43): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(342,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(343,43): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(343,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(370,43): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(370,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(371,43): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\lab1.cpp(371,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
   lab1.vcxproj -> C:\Users\Иван\Desktop\Программирование\3_semester\lab1\lab1\Debug\lab1.exe
