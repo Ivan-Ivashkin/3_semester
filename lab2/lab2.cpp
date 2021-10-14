@@ -56,23 +56,19 @@ public:
 	}
 
 	friend std::ostream& operator<<(std::ostream& output, Grid const& grid) {
-		size_t counter = 0;
-		for (size_t i = 0; i < grid.get_xsize() * grid.get_ysize(); ++i) {
-			t_data value = grid.memory[i];
-			output << value << ' ';
-			++counter;
-
-			if (counter % grid.get_xsize() == 0) {
-				output << '\n';
+		for (size_t i = 0; i < grid.get_ysize(); ++i) {
+			for (size_t j = 0; j < grid.get_xsize(); ++j) {
+				output << grid.memory[i * grid.get_xsize() + j] << ' ';
 			}
+			output << '\n';
 		}
 
-		return output;
+		return output;		
 	}
 
 	friend std::istream& operator>>(std::istream& input, Grid& grid) {
 		size_t i = 0;
-		while (input.good() && i < grid.get_xsize() * grid.get_ysize()) {
+		while (i < grid.get_xsize() * grid.get_ysize()) {
 			input >> grid.memory[i];
 			++i;
 		}
@@ -83,9 +79,9 @@ public:
 
 int main(int argc, const char* argv[]) {
 
-	Grid<float> g(3, 2);
-	std::cin >> g;
-	std::cout << g;
+	//Grid<float> g(5, 5);
+	//std::cin >> g;
+	//std::cout << g;
 
 	return 0;
 }
