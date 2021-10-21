@@ -1,14 +1,79 @@
 ﻿#include <iostream>
 
-template <typename t_data>
+class Handler {
+	virtual void* data() = 0;
+
+	virtual void const* data() const = 0;
+
+	virtual std::type_info const& type() = 0;
+
+	virtual ~Handler() = default;
+};
+
+template <typename T>
+class TrivialHandler: public Handler {
+private:
+	T value;
+public:
+	void* data() override {
+		return  static_cast<void*>(&value);
+	}
+
+	void const* data() const override {
+		return  static_cast<void const*>(&value);
+	}
+
+	std::type_info type() override {
+		return typeid(T);
+	}
+};
+
+class Any {
+private:
+	Handler* h;
+public:
+	template <typename T>
+	Any(T const &value) {
+		h = new TrivialHandler<T>(value);
+	}
+
+	template <typename T>
+	void replace(T const& value) {
+		delete h;
+		h = new TrivialHandler<T>(value);
+	}
+
+	template <typename T>
+	T& as() {
+		TrivialHandler<T>& th = dynamic_cast<TrivialHandler<T>&>(*h);
+		return *(static_cast<T*>(th.data()));
+	}
+
+	template <typename T>
+	T const& as() {
+		TrivialHandler<T>& th = dynamic_cast<TrivialHandler<T>&>(*h);
+		return *(static_cast<T const*>(th.data()));
+	}
+
+	template <typename T>
+	bool is_contain() const {
+		return h->type() == typeid(T);
+	}
+};
+
+//dynamic_cast
+//static_cast<void*>(&v)
+//typeid(T) -> std::type_info
+//ProxyRef
+
+template <typename T>
 class Grid {
 private:
-	t_data* memory;
+	T* memory;
 	size_t x_size, y_size;
 
 public:
-
-	Grid(size_t x_size, size_t y_size) : x_size{ x_size }, y_size{ y_size }, memory{ new t_data[x_size * y_size] } {}
+	Grid(size_t x_size, size_t y_size) : x_size{ x_size }, y_size{ y_size }, memory{ new T[x_size * y_size] } {}
 
 	size_t get_xsize() const {
 		return x_size;
@@ -18,7 +83,7 @@ public:
 		return y_size;
 	}
 
-	Grid(Grid const& old) : x_size{ old.get_xsize() }, y_size{ old.get_ysize() }, memory{ new t_data[x_size * y_size] } {
+	Grid(Grid const& old) : x_size{ old.get_xsize() }, y_size{ old.get_ysize() }, memory{ new T[x_size * y_size] } {
 		for (size_t i = 0; i < x_size * y_size; ++i) {
 			memory[i] = old[i];
 		}
@@ -34,7 +99,7 @@ public:
 		x_size = old.get_xsize();
 		y_size = old.get_ysize();
 
-		this->memory = new t_data[x_size * y_size];
+		this->memory = new T[x_size * y_size];
 
 		for (size_t i = 0; i < x_size * y_size; ++i) {
 			memory[i] = old[i];
@@ -47,11 +112,11 @@ public:
 		delete[] memory;
 	}
 
-	t_data operator()(size_t x_idx, size_t y_idx) const {
+	T operator()(size_t x_idx, size_t y_idx) const {
 		return memory[x_idx * x_size + y_idx];
 	}
 
-	t_data& operator()(size_t x_idx, size_t y_idx) {
+	T& operator()(size_t x_idx, size_t y_idx) {
 		return memory[x_idx * x_size + y_idx];
 	}
 
@@ -79,9 +144,9 @@ public:
 
 int main(int argc, const char* argv[]) {
 
-	//Grid<float> g(5, 5);
-	//std::cin >> g;
-	//std::cout << g;
+	Grid<float> g(2, 3);
+	std::cin >> g;
+	std::cout << g;
 
 	return 0;
 }
